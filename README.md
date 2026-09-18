@@ -45,11 +45,16 @@ Requirements: Node.js 22.13 or newer and pnpm.
 
 ```bash
 pnpm install
+mkdir -p data/source
+curl -L https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json \
+  -o data/source/known_exploited_vulnerabilities.json
 node scripts/prepare-kev-data.mjs data/source/known_exploited_vulnerabilities.json
 pnpm dev
 ```
 
 Then open the local URL printed by the development server.
+
+The source and generated dataset files are intentionally not stored in GitHub. This keeps the repository lightweight and ensures the analysis can be reproduced from CISA's official feed.
 
 ## Quality checks
 

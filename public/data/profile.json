@@ -1,0 +1,108 @@
+{
+  "sourceRows": 1713,
+  "cleanRows": 1713,
+  "columns": [
+    "cveID",
+    "cwes",
+    "dateAdded",
+    "dueDate",
+    "forensicTriage",
+    "knownRansomwareCampaignUse",
+    "notes",
+    "product",
+    "requiredAction",
+    "shortDescription",
+    "vendorProject",
+    "vulnerabilityName"
+  ],
+  "types": {
+    "cveID": [
+      "string"
+    ],
+    "cwes": [
+      "array"
+    ],
+    "dateAdded": [
+      "string"
+    ],
+    "dueDate": [
+      "string"
+    ],
+    "forensicTriage": [
+      "string"
+    ],
+    "knownRansomwareCampaignUse": [
+      "string"
+    ],
+    "notes": [
+      "string"
+    ],
+    "product": [
+      "string"
+    ],
+    "requiredAction": [
+      "string"
+    ],
+    "shortDescription": [
+      "string"
+    ],
+    "vendorProject": [
+      "string"
+    ],
+    "vulnerabilityName": [
+      "string"
+    ]
+  },
+  "missing": {
+    "cveID": 0,
+    "cwes": 0,
+    "dateAdded": 0,
+    "dueDate": 0,
+    "forensicTriage": 0,
+    "knownRansomwareCampaignUse": 0,
+    "notes": 0,
+    "product": 0,
+    "requiredAction": 0,
+    "shortDescription": 0,
+    "vendorProject": 0,
+    "vulnerabilityName": 0
+  },
+  "invalidRequiredCounts": {
+    "cveID": 0,
+    "vendorProject": 0,
+    "product": 0,
+    "vulnerabilityName": 0,
+    "dateAdded": 0,
+    "shortDescription": 0,
+    "requiredAction": 0,
+    "dueDate": 0
+  },
+  "invalidDateCounts": {
+    "dateAdded": 0,
+    "dueDate": 0
+  },
+  "exactDuplicates": 0,
+  "duplicateCves": 0,
+  "rejectedRows": 0,
+  "ransomwareValues": [
+    "Known",
+    "Unknown"
+  ],
+  "categoricalValues": {
+    "knownRansomwareCampaignUse": [
+      "Known",
+      "Unknown"
+    ],
+    "forensicTriage": [
+      "No",
+      "Yes"
+    ]
+  },
+  "transformations": [
+    "trimmed and collapsed whitespace",
+    "validated ISO date strings",
+    "removed exact duplicates",
+    "kept first occurrence of duplicate CVE IDs",
+    "rejected rows missing required fields or valid dates"
+  ]
+}
