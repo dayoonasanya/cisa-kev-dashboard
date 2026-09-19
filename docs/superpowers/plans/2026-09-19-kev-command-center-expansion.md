@@ -341,4 +341,189 @@ Render `KevPortal` from `app/page.tsx`. Set title to `KEV Command Center | Adeda
 
 - [ ] **Step 6: Run shell tests, lint, and build**
 
-Run: `pn
+Run: `pnpm test src/components/portal/KevPortal.test.tsx && pnpm lint && pnpm build`
+
+Expected: tests PASS, lint exits 0, and production build exits 0.
+
+- [ ] **Step 7: Commit the portal foundation**
+
+```bash
+git add app src/components/portal src/components/views/CommandCenterView.tsx src/components/vulnerabilities/PriorityBadge.tsx
+git commit -m "feat: build KEV command center shell"
+```
+
+---
+
+### Task 6: Add Vulnerability Explorer and Detail Workflow
+
+**Files:**
+- Modify: `src/components/portal/KevPortal.test.tsx`
+- Create: `src/components/views/VulnerabilityExplorerView.tsx`
+- Create: `src/components/vulnerabilities/VulnerabilityDrawer.tsx`
+- Modify: `src/components/portal/KevPortal.tsx`
+- Modify: `app/globals.css`
+
+**Interfaces:**
+- Consumes: `queryRecords`, `calculatePriority`, global filter state, `AnalystStore`.
+- Produces: explorer controls/results, accessible record selection, detail drawer, watchlist, and notes.
+
+- [ ] **Step 1: Add failing explorer interaction tests**
+
+Assert search finds the intended CVE, combined filters produce the empty state, reset restores results, sorting changes the first row, page-size selection changes result count, row activation opens the correct drawer, Escape closes it and restores focus, watchlist toggles, notes persist after drawer reopen, and missing optional fields show `Not provided by CISA`.
+
+- [ ] **Step 2: Run the focused tests and confirm RED**
+
+Run: `pnpm test src/components/portal/KevPortal.test.tsx -t "explorer|drawer|watchlist|notes"`
+
+Expected: FAIL because Explorer is not implemented.
+
+- [ ] **Step 3: Implement Explorer desktop and mobile results**
+
+Use a semantic table at desktop widths and cards below the mobile breakpoint. Keep identical CVE, vendor/product, priority, ransomware, added date, and due date content. Reset page to 1 whenever search, filters, sort, or page size changes.
+
+- [ ] **Step 4: Implement the accessible detail drawer**
+
+Use the existing `Drawer` primitive. Include all source fields, priority factor breakdown, CISA/NVD links, watchlist action, a 2,000-character note field, and the **Saved on this device** label.
+
+- [ ] **Step 5: Run focused tests and full checks**
+
+Run: `pnpm test src/components/portal/KevPortal.test.tsx && pnpm test && pnpm lint && pnpm build`
+
+Expected: all tests PASS, lint exits 0, and build exits 0.
+
+- [ ] **Step 6: Commit the explorer**
+
+```bash
+git add src/components/views/VulnerabilityExplorerView.tsx src/components/vulnerabilities/VulnerabilityDrawer.tsx src/components/portal/KevPortal.tsx src/components/portal/KevPortal.test.tsx app/globals.css
+git commit -m "feat: add KEV vulnerability explorer"
+```
+
+---
+
+### Task 7: Add Vendor Intelligence and Printable Briefing
+
+**Files:**
+- Modify: `src/components/portal/KevPortal.test.tsx`
+- Create: `src/components/views/VendorIntelligenceView.tsx`
+- Create: `src/components/views/BriefingView.tsx`
+- Modify: `src/components/portal/KevPortal.tsx`
+- Modify: `app/globals.css`
+
+**Interfaces:**
+- Consumes: filtered records, `deriveBriefing`, global vendor selection, dataset metadata.
+- Produces: vendor comparison/profile view, methodology, and print-ready briefing.
+
+- [ ] **Step 1: Add failing vendor and briefing tests**
+
+Assert selecting a vendor updates its product breakdown, zero-record vendors cannot be selected, comparisons expose counts and ransomware proportions, the briefing carries the active scope, the three priority records appear, methodology calls the measure KEV Action Priority, and the print button calls `window.print`.
+
+- [ ] **Step 2: Run focused tests and confirm RED**
+
+Run: `pnpm test src/components/portal/KevPortal.test.tsx -t "vendor|briefing|print|methodology"`
+
+Expected: FAIL because both views are missing.
+
+- [ ] **Step 3: Implement Vendor Intelligence**
+
+Render ranked vendors, selectable vendor profile, product distribution, ransomware-linked proportion, and remediation-window comparison. Label counts as catalog entries rather than vulnerabilities present in any organization.
+
+- [ ] **Step 4: Implement Briefing and methodology**
+
+Render snapshot scope, deterministic headline, four metrics, priority distribution, top concentration, ransomware share, three priority records, source metadata, full score explanation, caveats, and a print action.
+
+- [ ] **Step 5: Add print CSS**
+
+Under `@media print`, hide navigation, filters, non-print actions, and drawers; set a white background, black text, non-breaking briefing sections, and explicit link URLs where helpful.
+
+- [ ] **Step 6: Run focused tests and full checks**
+
+Run: `pnpm test src/components/portal/KevPortal.test.tsx && pnpm test && pnpm lint && pnpm build`
+
+Expected: all tests PASS, lint exits 0, and build exits 0.
+
+- [ ] **Step 7: Commit intelligence and briefing views**
+
+```bash
+git add src/components/views/VendorIntelligenceView.tsx src/components/views/BriefingView.tsx src/components/portal/KevPortal.tsx src/components/portal/KevPortal.test.tsx app/globals.css
+git commit -m "feat: add vendor intelligence and briefing"
+```
+
+---
+
+### Task 8: Complete Polish, Documentation, Publication, and GitHub Delivery
+
+**Files:**
+- Modify: `app/globals.css`
+- Modify: `README.md`
+- Delete: `src/components/dashboard/KevDashboard.tsx`
+- Create or update: repository preview screenshot according to the hosting workflow's supported capture path.
+
+**Interfaces:**
+- Consumes: all completed portal views.
+- Produces: verified responsive release, updated documentation, published Sites deployment, and synchronized GitHub main branch.
+
+- [ ] **Step 1: Remove the replaced dashboard**
+
+Delete `src/components/dashboard/KevDashboard.tsx`, confirm no imports remain with:
+
+```bash
+rg "KevDashboard|components/dashboard" app src
+```
+
+Expected: no matches.
+
+- [ ] **Step 2: Run accessibility and responsive inspection**
+
+Use the Sites preview workflow. Inspect at 1440×900, 1024×768, 390×844, and 360×800. Keyboard-test view navigation, all filters, result rows, drawer close/focus restoration, pagination, watchlist, notes, and print action. Correct overflow, clipped labels, low contrast, missing focus, and touch targets below 44px.
+
+- [ ] **Step 3: Inspect trust and empty/error states**
+
+Verify source metadata on all four views; confirm known/unknown language, score disclaimer, device-only label, no-result reset, malformed snapshot error, failed fetch retry, and empty chart summaries.
+
+- [ ] **Step 4: Update README**
+
+Document all four views, KEV Action Priority factors and disclaimer, device-local state, test/build commands, data reproduction, live URL, GitHub portfolio purpose, and a current screenshot.
+
+- [ ] **Step 5: Run the final local verification gate**
+
+```bash
+pnpm test
+node --test scripts/prepare-kev-data.test.mjs
+pnpm lint
+pnpm build
+git diff --check
+git status --short
+```
+
+Expected: all tests PASS, lint/build exit 0, no whitespace errors, and only intended files remain modified.
+
+- [ ] **Step 6: Commit the release candidate**
+
+```bash
+git add app src README.md package.json pnpm-lock.yaml vitest.config.ts
+git add -u
+git commit -m "feat: complete KEV command center portal"
+```
+
+- [ ] **Step 7: Publish to the existing Sites project**
+
+Follow the `sites-hosting` publish procedure using the existing `.openai/hosting.json`. Do not register a new site. Record the returned deployment URL and confirm it matches the established project.
+
+- [ ] **Step 8: Smoke-test the published URL**
+
+Open the live site in a clean/private browser session. Verify the four views load, the snapshot record count is present, Explorer search works, a CVE drawer opens, and mobile layout has no horizontal page overflow.
+
+- [ ] **Step 9: Push the verified commits to GitHub**
+
+```bash
+git status --short
+git log --oneline --decorate -10
+git push origin main
+git status -sb
+```
+
+Expected: push succeeds and local `main` is aligned with `origin/main`.
+
+- [ ] **Step 10: Report delivery evidence**
+
+Provide the test count, lint/build results, published URL, GitHub commit SHA, feature summary, and any deliberately deferred items from the specification's exclusion list.
