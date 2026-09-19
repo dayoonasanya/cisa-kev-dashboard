@@ -1,0 +1,6 @@
+import type { PortalView } from "@/src/kev/types";
+
+const views=new Set(["command","explorer","vendors","briefing"]),sorts=new Set(["priority","newest","due","vendor","cve"]),rows=new Set(["25","50","100"]);
+const passthrough=new Set(["vendor","year","ransomware","search","product","priority","remediation"]);
+export function normalizePortalParams(input:URLSearchParams){const out=new URLSearchParams();for(const [key,value] of input){if(!value)continue;if(key==="view"&&views.has(value))out.set(key,value);else if(key==="sort"&&sorts.has(value))out.set(key,value);else if(key==="rows"&&rows.has(value))out.set(key,value);else if(key==="page"&&/^\d+$/.test(value)&&Number(value)>0)out.set(key,value);else if(key==="cve"&&/^CVE-\d{4}-\d{4,}$/i.test(value))out.set(key,value.toUpperCase());else if(key==="present"&&value==="1")out.set(key,value);else if(passthrough.has(key))out.set(key,value);}return out;}
+export function buildCommandCenterUrl(input:{view?:PortalView;cve?:string;[key:string]:string|undefined}){const params=new URLSearchParams();for(const [key,value] of Object.entries(input))if(value)params.set(key,value);const normalized=normalizePortalParams(params).toString();return `/command-center${normalized?`?${normalized}`:""}`;}
