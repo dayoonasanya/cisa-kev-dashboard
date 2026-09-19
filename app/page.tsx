@@ -1,2 +1,2 @@
-import KevPortal from "@/src/components/portal/KevPortal";
-export default function Home(){return <KevPortal/>}
+import ShowcaseHome from "@/src/components/showcase/ShowcaseHome";
+export default function Home(){return <ShowcaseHome/>}

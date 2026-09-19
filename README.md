@@ -4,6 +4,10 @@ A portfolio-grade security intelligence portal built from the U.S. Cybersecurity
 
 **Live dashboard:** https://cisa-kev-risk-dashboard.onadainnovative.chatgpt.site
 
+The public root is a cinematic cybersecurity engineering showcase. The complete analyst workspace is available at `/command-center`, with optional `?present=1` presentation mode for demonstrations.
+
+> Independent portfolio analysis using official public CISA KEV data. Not a U.S. government system.
+
 ## Four connected workspaces
 
 - **Command Center** — headline intelligence, coordinated filters, portfolio metrics, interactive trends, and a ranked action queue.
@@ -76,6 +80,14 @@ The automated suite covers dataset validation, priority boundaries, normalized s
 ## Portfolio intent
 
 This project demonstrates secure data handling, reproducible analysis, explicit uncertainty, accessible interaction design, responsive information architecture, deterministic business logic, test-driven development, and production deployment. It uses only public CISA data; no personal, employer, customer, or proprietary information is included.
+
+## Handshake submission
+
+Submit the public site as the primary project link and the GitHub repository as supporting evidence:
+
+- Showcase: https://cisa-kev-risk-dashboard.onadainnovative.chatgpt.site
+- Command center: https://cisa-kev-risk-dashboard.onadainnovative.chatgpt.site/command-center
+- Source: https://github.com/dayoonasanya/cisa-kev-dashboard
 
 ## Author
 

@@ -12,3 +12,5 @@ export interface PriorityFactor { key:string; label:string; points:number; expla
 export interface PriorityResult { score:number; band:PriorityBand; factors:PriorityFactor[]; }
 export interface PagedResult<T> { items:T[]; total:number; page:number; pageSize:number; pageCount:number; }
 export interface AnalystState { watchlist:string[]; notes:Record<string,string>; persistenceAvailable:boolean; }
+export type ThreatPosture = "Critical action" | "Heightened attention" | "Active monitoring";
+export interface ShowcaseModel { total:number; ransomwareCount:number; vendorCount:number; criticalCount:number; posture:ThreatPosture; headline:string; ransomwareSummary:string; topVendor:{name:string;count:number}|null; priorityRecords:KevRecord[]; asOfDate:string; }
