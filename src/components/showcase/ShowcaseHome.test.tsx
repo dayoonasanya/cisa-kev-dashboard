@@ -1,0 +1,8 @@
+import { afterEach,expect,it,vi } from "vitest";
+import { cleanup,render,screen } from "@testing-library/react";
+import ShowcaseHome from "./ShowcaseHome";
+afterEach(()=>{cleanup();vi.restoreAllMocks()});
+const record={cveID:"CVE-2026-0001",vendorProject:"Acme",product:"Edge",vulnerabilityName:"Remote issue",dateAdded:"2026-09-01",dueDate:"2026-09-02",knownRansomwareCampaignUse:"Known",requiredAction:"Patch",remediationDays:1};
+const dataset={title:"KEV",catalogVersion:"2026.09.16",dateReleased:"2026-09-16T00:00:00Z",retrievedAt:"2026-09-16T01:00:00Z",sourceUrl:"https://cisa.gov",records:[record]};
+it("presents an independent, data-driven showcase",async()=>{vi.stubGlobal("fetch",vi.fn().mockResolvedValue({ok:true,json:async()=>dataset}));render(<ShowcaseHome/>);expect(screen.getAllByText(/Not a U.S. government system/i).length).toBeGreaterThan(0);expect(screen.getByRole("heading",{name:/Confirmed exploitation/i})).toBeTruthy();expect((await screen.findAllByText("1",{selector:"strong"})).length).toBe(4);expect(screen.getAllByRole("link",{name:/Enter Command Center/i})[0].getAttribute("href")).toBe("/command-center");expect(await screen.findByRole("link",{name:/Review CVE-2026-0001/i})).toBeTruthy();});
+it("keeps trust content available when data fails",async()=>{vi.stubGlobal("fetch",vi.fn().mockRejectedValue(new Error("offline")));render(<ShowcaseHome/>);expect(await screen.findByText(/Intelligence snapshot unavailable/i)).toBeTruthy();expect(screen.getByRole("heading",{name:/Every signal is explainable/i})).toBeTruthy();expect(screen.getAllByText(/Adedayo A. Onasanya/i).length).toBeGreaterThan(0);});
