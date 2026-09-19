@@ -1,0 +1,4 @@
+import { Database,ExternalLink,Menu } from "lucide-react";
+import type { KevDataset } from "@/src/kev/types";
+
+export default function PortalHeader({dataset,onMenu}:{dataset:KevDataset;onMenu:()=>void}){const release=new Date(dataset.dateReleased).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});return <header className="portal-header"><button className="mobile-menu" onClick={onMenu} aria-label="Open navigation"><Menu/></button><div className="source-status"><span className="status-pulse"/><div><strong>PUBLIC INTELLIGENCE ONLINE</strong><small>Catalog {dataset.catalogVersion} · Released {release}</small></div></div><div className="header-actions"><span><Database size={15}/>{dataset.records.length.toLocaleString()} records</span><a href={dataset.sourceUrl} target="_blank" rel="noreferrer">Official CISA source <ExternalLink size={14}/></a></div></header>}

@@ -1,21 +1,26 @@
-# CISA KEV Risk Dashboard
+# CISA KEV Command Center
 
-An interactive cybersecurity dashboard that explores where risk is concentrated in the U.S. Cybersecurity and Infrastructure Security Agency's **Known Exploited Vulnerabilities (KEV)** catalog.
+A portfolio-grade security intelligence portal built from the U.S. Cybersecurity and Infrastructure Security Agency's public **Known Exploited Vulnerabilities (KEV)** catalog. It turns confirmed exploitation evidence into an explainable review queue without presenting catalog frequency as organizational exposure.
 
 **Live dashboard:** https://cisa-kev-risk-dashboard.onadainnovative.chatgpt.site
 
-## What the dashboard shows
+## Four connected workspaces
 
-- Total KEV entries and vendors represented
-- Vulnerability concentration across vendors
-- Catalog additions over the latest 36 months
-- Products associated with confirmed ransomware use
-- Distribution of federal remediation windows
-- Interactive filters for vendor, year added, and ransomware status
+- **Command Center** — headline intelligence, coordinated filters, portfolio metrics, interactive trends, and a ranked action queue.
+- **Vulnerability Explorer** — normalized search, compound filters, five sort modes, pagination, evidence detail, local watchlist, and analyst notes.
+- **Vendor Intelligence** — ranked catalog concentration, selectable vendor profiles, product mix, ransomware-linked share, and remediation-window comparison.
+- **Briefing & Methodology** — a deterministic executive summary, priority distribution, top three review records, model caveats, and a print-ready layout.
 
-## Key finding
+## KEV Action Priority
 
-In catalog version `2026.09.16`, Microsoft accounts for 22.7% of the 1,713 catalog entries, while 21.0% of all entries have confirmed ransomware campaign use. These figures are prioritization signals—not vendor security ratings—and should be interpreted alongside organizational exposure and business impact.
+The portal includes a transparent 0–100 portfolio triage score with four components:
+
+- Confirmed ransomware campaign use: up to 40 points
+- Federal remediation-window urgency: up to 30 points
+- Catalog recency: up to 20 points
+- Due-date status: up to 10 points
+
+This is a project-specific review aid—not CVSS, EPSS, or an official CISA severity rating. Before acting, validate asset presence, affected product version, exposure, compensating controls, and business criticality in your own environment.
 
 ## Data source and methodology
 
@@ -27,6 +32,7 @@ Important interpretation notes:
 - `dueDate` is a U.S. federal remediation deadline, not a universal service-level agreement.
 - `Unknown` ransomware status means unconfirmed, not that ransomware use did not occur.
 - Vendor frequency does not establish that a vendor is inherently insecure.
+- Watchlist selections and analyst notes remain only in the current browser's local storage. No account or server database is involved.
 
 The CISA dataset is made available under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 
@@ -60,9 +66,16 @@ The source and generated dataset files are intentionally not stored in GitHub. T
 
 ```bash
 node --test scripts/prepare-kev-data.test.mjs
+pnpm test
 pnpm lint
 pnpm build
 ```
+
+The automated suite covers dataset validation, priority boundaries, normalized search, compound filters, stable sorting, pagination, briefing derivation, storage fallback, portal states, view navigation, the details workflow, vendor profiles, and printing.
+
+## Portfolio intent
+
+This project demonstrates secure data handling, reproducible analysis, explicit uncertainty, accessible interaction design, responsive information architecture, deterministic business logic, test-driven development, and production deployment. It uses only public CISA data; no personal, employer, customer, or proprietary information is included.
 
 ## Author
 

@@ -1,0 +1,5 @@
+import { BarChart3,BookOpen,Compass,Search,ShieldCheck,X } from "lucide-react";
+import type { PortalView } from "@/src/kev/types";
+
+const items:[PortalView,string,typeof Compass][]=[["command","Command Center",BarChart3],["explorer","Vulnerability Explorer",Search],["vendors","Vendor Intelligence",Compass],["briefing","Briefing & Methodology",BookOpen]];
+export default function PortalNavigation({view,onChange,onClose}:{view:PortalView;onChange:(view:PortalView)=>void;onClose:()=>void}){return <aside className="portal-sidebar"><button className="mobile-nav-close" aria-label="Close navigation" onClick={onClose}><X/></button><div className="portal-brand"><span><ShieldCheck size={20}/></span><div><strong>KEV</strong><small>COMMAND CENTER</small></div></div><nav aria-label="Portal views">{items.map(([id,label,Icon])=><button key={id} className={view===id?"active":""} aria-current={view===id?"page":undefined} onClick={()=>onChange(id)}><Icon size={17}/><span>{label}</span></button>)}</nav><div className="analyst-card"><span>ANALYST WORKSPACE</span><strong>Adedayo A. Onasanya</strong><small>Computing &amp; Security Technology</small></div></aside>}

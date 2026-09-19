@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Known Exploited Vulnerabilities: Where Risk Concentrates",
-  description: "An interactive analysis of CISA's Known Exploited Vulnerabilities catalog.",
+  title: "KEV Command Center | Adedayo A. Onasanya",
+  description: "An interactive CISA Known Exploited Vulnerabilities analysis and prioritization portal.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

@@ -44,5 +44,7 @@ next-env.d.ts
 /.codex/
 /outputs/
 /work/
+/.worktrees/
+/.superpowers/
 data/source/known_exploited_vulnerabilities.json
 public/data/kev-clean.json

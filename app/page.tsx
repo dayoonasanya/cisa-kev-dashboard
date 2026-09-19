@@ -1,2 +1,2 @@
-import KevDashboard from "@/src/components/dashboard/KevDashboard";
-export default function Home(){return <KevDashboard/>}
+import KevPortal from "@/src/components/portal/KevPortal";
+export default function Home(){return <KevPortal/>}
