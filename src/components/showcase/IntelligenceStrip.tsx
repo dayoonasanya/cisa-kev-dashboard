@@ -1,0 +1,2 @@
+import type { ShowcaseModel } from "@/src/kev/types";
+export default function IntelligenceStrip({model}:{model:ShowcaseModel}){const values=[[model.total,"KEV records"],[model.ransomwareCount,"Ransomware linked"],[model.vendorCount,"Vendors tracked"],[model.criticalCount,"Critical action"]] as const;return <dl className="intelligence-strip">{values.map(([value,label])=><div key={label}><dt>{label}</dt><dd><strong>{value.toLocaleString()}</strong><span>validated intelligence</span></dd></div>)}</dl>}
